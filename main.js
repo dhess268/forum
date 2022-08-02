@@ -1,13 +1,16 @@
 // your code here
 let submitButton = document.querySelector('#submit') 
 submitButton.addEventListener('click', (event) => {
+  // create elements to compose the post
   let namePart = document.createElement('div')
   let wholePart = document.createElement('div')
   let msgPart = document.createElement('div')
   let upvote = document.createElement('i')
   let downvote = document.createElement('i')
   let scorePart = document.createElement('div')
+  // init score at 0
   wholePart.score = 0
+
   upvote.addEventListener('click', (evt) => {
     evt.target.parentElement.parentElement.score += 1
     evt.target.parentElement.parentElement.children[2].innerText = evt.target.parentElement.parentElement.score
@@ -28,10 +31,11 @@ submitButton.addEventListener('click', (event) => {
   wholePart.appendChild(namePart)
   wholePart.appendChild(msgPart)
   wholePart.appendChild(scorePart)
-  wholePart.className = 'row sick'
+  wholePart.className = 'row whole'
   namePart.className = "row"
   msgPart.className = "row"
   scorePart.className = "row score"
+
   // for readability we hold the values in variables
   let name = document.querySelector('#name').value
   let message = document.querySelector('#message').value
@@ -64,15 +68,15 @@ submitButton.addEventListener('click', (event) => {
   document.querySelector('.posts').appendChild(wholePart)
   document.querySelector('#name').value = ""
   document.querySelector('#message').value = ""
-  shuffleList()
+  sortList()
 })
 
 
 
-function shuffleList(){  
+function sortList(){  
   const frag = document.createDocumentFragment();
   const list = document.querySelector(".posts");
-  const items = list.querySelectorAll(".sick");
+  const items = list.querySelectorAll(".whole");
   const sortedList = [...items].sort((a, b) => {
       const c = a.score
       const d = b.score 
